@@ -3,7 +3,7 @@ const app = express()
 port=8080;
 
 app.use(express.static(__dirname + '/public'));
-
+app.set('view engine','ejs')
 
 const { MongoClient } = require('mongodb')
 
