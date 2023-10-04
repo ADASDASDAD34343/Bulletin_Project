@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const port = 8080;
+const port = 3000;
 const { MongoClient } = require('mongodb');
 const winston = require('winston');
 const bodyParser = require('body-parser');
-
+require('dotenv').config();
 // Winston 로그 설정
 const logOptions = {
     level: 'info',
@@ -39,7 +39,7 @@ app.use((req, res, next) => {
     next();
 });
 
-const url = 'mongodb+srv://wxcv3123:Cka9Ts6rg8ISgH9w@cluster0.x18a4ei.mongodb.net/?retryWrites=true&w=majority';
+const url = process.env.MONGODB_URI;
 
 let db;
 
@@ -95,4 +95,7 @@ app.post('/add',async (요청,응답) =>{
         응답.status(500).redirect('/server/error')
      } 
   
+})
+app.get('/detail/:aaaa',(요청,응답)=>{
+    응답.render("detail.ejs")
 })
