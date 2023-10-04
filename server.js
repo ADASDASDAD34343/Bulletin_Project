@@ -74,14 +74,25 @@ app.get('/list', async (req, res) => {
 app.get('/write',(req,res) =>{
   res.render('write.ejs')
 })
-app.get('/error',(req,res) =>{
+app.get('/write/error',(req,res) =>{
     res.render('error.ejs')
   })
+  app.get('/server/error',(req,res) =>{
+    res.render('server_error.ejs')
+  })
 app.post('/add',async (요청,응답) =>{
-  if (요청.body.title == '') {
-    return 응답.redirect('/error');
-  } else {
-    await db.collection('post').insertOne({ title : 요청.body.title, content : 요청.body.content })
-    응답.redirect('/list') 
-  }
+    try {
+        if (요청.body.title == '') {
+            return 응답.redirect('/write/error');
+          } if (요청.body.title == ' ') {
+            return 응답.redirect('/write/error');
+          } else  {
+            await db.collection('post').insertOne({ title : 요청.body.title, content : 요청.body.content })
+            응답.redirect('/list') 
+          }
+     } catch (e) {
+        console.log(e)
+        응답.status(500).redirect('/server/error')
+     } 
+  
 })
