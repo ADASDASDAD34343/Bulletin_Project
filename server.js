@@ -30,3 +30,18 @@ app.get('/list', async (요청, 응답) => {
    console.log(result[0].title)
     응답.render('list.ejs',{글목록 :result })
   })
+
+
+  const winston = require('winston');
+
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({ filename: 'error.log', level: 'error' })
+    ]
+});
+
+logger.log('info', '정보 로그 메시지');
+logger.error('에러 로그 메시지');
