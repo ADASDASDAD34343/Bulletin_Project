@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>웹 페이지 제목</title>
+    <title>게시판</title>
     <link rel="stylesheet" href="/yu/styles.css">
-    <!-- Bootstrap CSS는 더이상 사용하지 않음 -->
 </head>
 <body>
-    <%- include('nav.ejs')%>
+    <%- include('nav.ejs') %>
     <div class="content">
-        <% for (let i = 0; i < 글목록.length; i++) { %>
-            <div class="list-box">
-                <h4><%= 글목록[i].title %></h4>
-                <p><%= 글목록[i].content %></p>
-            </div>
-        <% } %>
+        <h1 class="page-title">게시판</h1>
+        <ul class="post-list">
+            <% for (let post of 글목록) { %>
+                <li class="post">
+                    <h2 class="post-title"><%= post.title %></h2>
+                    <p class="post-content"><%= post.content %></p>
+                </li>
+            <% } %>
+        </ul>
     </div>
 </body>
 </html>
