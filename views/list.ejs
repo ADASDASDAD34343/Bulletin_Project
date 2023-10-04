@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>웹 페이지 제목</title>
+    <link rel="stylesheet" href="/yu/styles.css">
+    <!-- Bootstrap CSS는 더이상 사용하지 않음 -->
 </head>
-<body class="grey-bg"> 
-    <div class="white-bg">
-        <div class="list-box">
-          <h4><%= 글목록[0].title %></h4>
-          <p>글내용임</p>
-        </div>
-        <div class="list-box">
-          <h4>글제목임</h4>
-          <p>글내용임</p>
-        </div>
-      </div> 
+<body>
+    <%- include('nav.ejs')%>
+    <div class="content">
+        <% for (let i = 0; i < 글목록.length; i++) { %>
+            <div class="list-box">
+                <h4><%= 글목록[i].title %></h4>
+                <p><%= 글목록[i].content %></p>
+            </div>
+        <% } %>
+    </div>
 </body>
 </html>

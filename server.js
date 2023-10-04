@@ -2,8 +2,11 @@ const express = require('express')
 const app = express()
 port=8080;
 
-app.use(express.static(__dirname + '/public'));
+
+
 app.set('view engine','ejs')
+app.use('/public', express.static('public/css'));
+app.use('/yu', express.static('views/public/css'));
 
 const { MongoClient } = require('mongodb')
 
